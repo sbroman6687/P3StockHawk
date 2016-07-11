@@ -83,7 +83,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       mServiceIntent.putExtra("tag", "init");
       if (isConnected){
         startService(mServiceIntent);
-        Toast.makeText(mContext, getString(R.string.statusOK), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, getString(R.string.statusOK), Toast.LENGTH_SHORT).show();
 
       } else{
         networkToast();
@@ -116,9 +116,14 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 @Override public void onInput(MaterialDialog dialog, CharSequence input) {
                   // On FAB click, receive user input. Make sure the stock doesn't already exist
                   // in the DB and proceed accordingly
+
+                  //Make the stock symbols capital letter
+                  String newStockSymbol = input.toString().toUpperCase();
+
                   Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
                       new String[] { QuoteColumns.SYMBOL }, QuoteColumns.SYMBOL + "= ?",
-                      new String[] { input.toString() }, null);
+                      new String[] { newStockSymbol}, null);
+
                   if (c.getCount() != 0) {
                     Toast toast =
                         Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
@@ -186,6 +191,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
       switch (stockStatus){
 
+        case StockTaskService.STATUS_OK:
+          userText = getString(R.string.statusOK);
+          //userText = R.string.ErrorJson;
+          break;
+
         case StockTaskService.STATUS_ERROR_JSON:
           userText = getString(R.string.ErrorJson);
           //userText = R.string.ErrorJson;
@@ -210,7 +220,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
           break;
       }
     //Toast.makeText(mContext, getString(R.string.network_toast), Toast.LENGTH_SHORT).show();
-    Toast.makeText(mContext, userText, Toast.LENGTH_LONG).show();
+    Toast.makeText(mContext, userText, Toast.LENGTH_SHORT).show();
   }
 
   public void restoreActionBar() {
@@ -234,18 +244,28 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
 
+    switch (id) {
+      case R.id.action_change_units:
+        Utils.showPercent = !Utils.showPercent;
+        this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
+        break;
+      default:
+        break;
+    }
+    return false;
+
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
+    //if (id == R.id.action_settings) {
+      //return true;
+    //}
 
-    if (id == R.id.action_change_units){
+    //if (id == R.id.action_change_units){
       // this is for changing stock changes from percent value to dollar value
-      Utils.showPercent = !Utils.showPercent;
-      this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
-    }
+      //Utils.showPercent = !Utils.showPercent;
+      //this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
+    //}
 
-    return super.onOptionsItemSelected(item);
+    //return super.onOptionsItemSelected(item);
   }
 
   @Override
@@ -259,22 +279,24 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         null);
   }
 
-
-
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data){
     mCursorAdapter.swapCursor(data);
     mCursor = data;
-
     //Empty View
     networkToast();
-
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader){
     mCursorAdapter.swapCursor(null);
-    //emptyView();
+    //emptyView;
   }
 
+  @Override
+  protected void onDestroy(){
+    if (mCursor != null)
+      mCursor.close();
+    super.onDestroy();
+  }
 }

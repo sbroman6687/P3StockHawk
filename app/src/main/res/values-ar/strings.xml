@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">P3 المالية هوك</string>
+    <string name="ErrorJson">حدث خطأ داخلي!</string>
+    <string name="ErrorServer">لا معلومات الأوراق المالية المتاحة. الملقم لا تعود بيانات صالحة. يرجى التحقق من وجود نسخة محدثة من التطبيق!</string>
+    <string name="ServerDown">لا معلومات الأوراق المالية المتاحة. الملقم لا يعودون البيانات !!</string>
+    <string name="StatusUnknown">لا يمكن تحديد المشكلة. حاول مرة أخرى في وقت لاحق</string>
+    <string name="action_change_units">وحدات التغيير</string>
+    <string name="action_example">العمل سبيل المثال</string>
+    <string name="action_settings">إعدادات</string>
+    <string name="content_test">بحث عن الأوراق المالية رمز</string>
+    <string name="dataNoAvailable">بيانات المخزون غير متوفر في هذه اللحظة</string>
+    <string name="network_toast">اه أوه! هذا التطبيق يتطلب اتصال بالإنترنت</string>
+    <string name="statusNoNetwork">كنت بحاجة إلى الاتصال بالإنترنت</string>
+    <string name="statusOK">يمكنك إضافة أسهم جديدة عن طريق النقر على زر الإضافة</string>
+</resources>

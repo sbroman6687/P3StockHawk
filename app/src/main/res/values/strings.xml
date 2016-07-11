@@ -1,19 +1,19 @@
 <resources>
-  <string name="app_name">P3 Stock Hawk</string>
+  <string name="app_name" translatable="true">P3 Stock Hawk</string>
 
   <string name="action_example">Example action</string>
 
   <string name="action_settings">Settings</string>
   <string name="action_change_units">Change Units</string>
-  <string name="symbol_search">Symbol Search</string>
-  <string name="content_test">Search for a Stock Symbol</string>
-  <string name="input_hint">FB</string>
+  <string name="symbol_search" translatable="true">Symbol Search</string>
+  <string name="content_test" translatable="true">Search for a Stock Symbol</string>
+  <string name="input_hint">FB / GOOG / MSFT</string>
   <string name="input_prefill"></string>
-  <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+  <string name="network_toast" translatable="true">Uh-oh! This app requires an internet connection</string>
   <string name="stockStatus">StockStatus</string>
-  <string name="dataNoAvailable">Stocks data is not available at this moment</string>
-  <string name="statusOK">You can add new stocks by clicking the add button</string>
-  <string name="statusNoNetwork">You need to connect to internet</string>
+  <string name="dataNoAvailable" translatable="true">Stocks data is not available at this moment</string>
+  <string name="statusOK" translatable="true">You can add new stocks by clicking the add button</string>
+  <string name="statusNoNetwork" translatable="true">You need to connect to internet</string>
   <string name="ErrorJson">Internal Error ocurred!</string>
   <string name="ServerDown">No stock information available. The server is not returning data!!</string>
   <string name="ErrorServer">No stock information available. The server is not returning valid data. Please check for an updated version of the App!</string>

@@ -1,7 +1,9 @@
 package com.sam_chordas.android.stockhawk.service;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -20,11 +22,15 @@ import com.sam_chordas.android.stockhawk.rest.Utils;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 /**
  * Created by sam_chordas on 9/30/15.
@@ -34,13 +40,16 @@ import java.net.URLEncoder;
 public class StockTaskService extends GcmTaskService{
   private String LOG_TAG = StockTaskService.class.getSimpleName();
 
+  //public static final String STOCK_DATA_UPDATED = "com.sam_chordas.android.stockhawk.STOCK_DATA_UPDATED";
+
   //Annotations to check the state of things
   @Retention(RetentionPolicy.SOURCE)
-  @IntDef({STATUS_SERVER_ERROR, STATUS_ERROR_JSON,
+  @IntDef({STATUS_OK,STATUS_SERVER_ERROR, STATUS_ERROR_JSON,
           STATUS_UNKNOWN, STATUS_SERVER_DOWN})
   public @interface StockStatus{
   }
 
+  public static final int STATUS_OK = 0;
   public static final int STATUS_SERVER_ERROR = 1;
   public static final int STATUS_ERROR_JSON = 2;
   public static final int STATUS_UNKNOWN = 3;
@@ -136,13 +145,14 @@ public class StockTaskService extends GcmTaskService{
     String urlString;
     String getResponse;
     int result = GcmNetworkManager.RESULT_FAILURE;
-    //Some Diferences
+
 
     if (urlStringBuilder != null){
       urlString = urlStringBuilder.toString();
       try{
         getResponse = fetchData(urlString);
         result = GcmNetworkManager.RESULT_SUCCESS;
+        setStockStatus(mContext,STATUS_OK);
         try {
           ContentValues contentValues = new ContentValues();
           // update ISCURRENT to 0 (false) so new data is current
@@ -151,10 +161,26 @@ public class StockTaskService extends GcmTaskService{
             mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,
                 null, null);
           }
-          mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
-              Utils.quoteJsonToContentVals(getResponse));
+          ArrayList<ContentProviderOperation> batchOperations = Utils.quoteJsonToContentVals(getResponse);
+          if (batchOperations != null && batchOperations.size() != 0) {
+            mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
+                    batchOperations);
+          } else {
+            //The stock doesn't exist.
+
+            Intent intent = new Intent();
+            intent.setAction("com.sam_chordas.android.stockhawk.ui.MyStocksActivity.STOCK_NOT_FOUND");
+            mContext.sendBroadcast(intent);
+
+          }
+
+          //mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
+              //Utils.quoteJsonToContentVals(getResponse));
         }catch (RemoteException | OperationApplicationException e){
           Log.e(LOG_TAG, "Error applying batch insert", e);
+          setStockStatus(mContext, STATUS_ERROR_JSON);
+        } catch (JSONException e) {
+          e.printStackTrace();
           setStockStatus(mContext, STATUS_ERROR_JSON);
         }
       } catch (IOException e){
