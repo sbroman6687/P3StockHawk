@@ -114,4 +114,114 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
     }
   }
+
+  public String getSymbol(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.SYMBOL},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String symbol = cursor.getString(cursor.getColumnIndex(QuoteColumns.SYMBOL));
+    cursor.close();
+    return symbol;
+
+  }
+  public String getName(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.NAME},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String name = cursor.getString(cursor.getColumnIndex(QuoteColumns.NAME));
+    cursor.close();
+    return name;
+
+  }
+  public String getCurrency(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.CURRENCY},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String currency = cursor.getString(cursor.getColumnIndex(QuoteColumns.CURRENCY));
+    cursor.close();
+    return currency;
+
+  }
+
+  public String getDayLow(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.DAYLOW},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String daylow = cursor.getString(cursor.getColumnIndex(QuoteColumns.DAYLOW));
+    cursor.close();
+    return daylow;
+  }
+
+  public String getDayHigh(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.DAYHIGH},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String dayhigh = cursor.getString(cursor.getColumnIndex(QuoteColumns.DAYHIGH));
+    cursor.close();
+    return dayhigh;
+
+  }
+  public String getYearLow(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.YEARLOW},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String yearlow = cursor.getString(cursor.getColumnIndex(QuoteColumns.YEARLOW));
+    cursor.close();
+    return yearlow;
+
+  }
+
+  public String getYearHigh(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.YEARHIGH},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String yearhigh = cursor.getString(cursor.getColumnIndex(QuoteColumns.YEARHIGH));
+    cursor.close();
+    return yearhigh;
+
+  }
+
+  public String getEarnings(int position){
+    Cursor cursor = mContext.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+            new String[]{QuoteColumns.EARNINGSSHARE},
+            QuoteColumns.ISCURRENT + " = ?",
+            new String[]{"1"},
+            null);
+    assert cursor != null;
+    cursor.moveToPosition(position);
+    String earnings = cursor.getString(cursor.getColumnIndex(QuoteColumns.EARNINGSSHARE));
+    cursor.close();
+    return earnings;
+
+  }
+
+
 }

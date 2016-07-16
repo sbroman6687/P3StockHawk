@@ -25,6 +25,21 @@ public class QuoteColumns {
   public static final String ISUP = "is_up";
   @DataType(DataType.Type.INTEGER) @NotNull
   public static final String ISCURRENT = "is_current";
-  //@DataType(DataType.Type.TEXT)@NotNull
-  //public static final String NAME = "name"; //Este nuevo dato lo he puesto nuevo
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String NAME = "name";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String CURRENCY = "currency";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String DAYLOW = "daylow";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String DAYHIGH = "dayhigh";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String YEARLOW = "yearlow";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String YEARHIGH = "yearhigh";
+  @DataType(DataType.Type.TEXT)@NotNull
+  public static final String EARNINGSSHARE = "earningsshare";
+
+
+
 }

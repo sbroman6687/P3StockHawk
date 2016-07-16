@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.facebook.stetho.Stetho;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
@@ -97,8 +98,18 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(this,
             new RecyclerViewItemClickListener.OnItemClickListener() {
               @Override public void onItemClick(View v, int position) {
-                //TODO:
                 // do something on item click
+                Intent intent = new Intent(MyStocksActivity.this, StockDetails.class);
+                intent.putExtra(QuoteColumns.SYMBOL,mCursorAdapter.getSymbol(position));
+                intent.putExtra(QuoteColumns.NAME,mCursorAdapter.getName(position));
+                intent.putExtra(QuoteColumns.CURRENCY,mCursorAdapter.getCurrency(position));
+                intent.putExtra(QuoteColumns.DAYHIGH,mCursorAdapter.getDayHigh(position));
+                intent.putExtra(QuoteColumns.DAYLOW,mCursorAdapter.getDayLow(position));
+                intent.putExtra(QuoteColumns.YEARHIGH,mCursorAdapter.getYearHigh(position));
+                intent.putExtra(QuoteColumns.YEARLOW,mCursorAdapter.getYearLow(position));
+                intent.putExtra(QuoteColumns.EARNINGSSHARE,mCursorAdapter.getEarnings(position));
+
+                startActivity(intent);
               }
             }));
     recyclerView.setAdapter(mCursorAdapter);
@@ -171,6 +182,20 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       // are updated.
       GcmNetworkManager.getInstance(this).schedule(periodicTask);
     }
+
+
+    // Stetho is a tool created by facebook to view your database in chrome inspect.
+    // The code below integrates Stetho into your app. More information here:
+    // http://facebook.github.io/stetho/
+    Stetho.initialize(
+            Stetho.newInitializerBuilder(this)
+                    .enableDumpapp(
+                            Stetho.defaultDumperPluginsProvider(this))
+                    .enableWebKitInspector(
+                            Stetho.defaultInspectorModulesProvider(this))
+                    .build());
+
+    ///////////////
   }
 
 

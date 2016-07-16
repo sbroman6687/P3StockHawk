@@ -96,16 +96,13 @@ public class Utils {
       } else {
         builder.withValue(QuoteColumns.ISUP, 1);
       }
-      //builder.withValue(QuoteColumns.NAME, jsonObject.getString("Name"));
-      //builder.withValue(QuoteColumns.CURRENCY, jsonObject.getString("Currency"));
-      //builder.withValue(QuoteColumns.LASTTRADEDATE, jsonObject.getString("LastTradeDate"));
-      //builder.withValue(QuoteColumns.DAYLOW, jsonObject.getString("DaysLow"));
-      //builder.withValue(QuoteColumns.DAYHIGH, jsonObject.getString("DaysHigh"));
-      //builder.withValue(QuoteColumns.YEARLOW, jsonObject.getString("YearLow"));
-      //builder.withValue(QuoteColumns.YEARHIGH, jsonObject.getString("YearHigh"));
-      //builder.withValue(QuoteColumns.EARNINGSSHARE, jsonObject.getString("EarningsShare"));
-      //builder.withValue(QuoteColumns.MARKETCAPITALIZATION, jsonObject.getString("MarketCapitalization"));
-
+      builder.withValue(QuoteColumns.NAME, jsonObject.getString("Name"));
+      builder.withValue(QuoteColumns.CURRENCY, jsonObject.getString("Currency"));
+      builder.withValue(QuoteColumns.DAYLOW, jsonObject.getString("DaysLow"));
+      builder.withValue(QuoteColumns.DAYHIGH, jsonObject.getString("DaysHigh"));
+      builder.withValue(QuoteColumns.YEARLOW, jsonObject.getString("YearLow"));
+      builder.withValue(QuoteColumns.YEARHIGH, jsonObject.getString("YearHigh"));
+      builder.withValue(QuoteColumns.EARNINGSSHARE, jsonObject.getString("EarningsShare"));
 
     } else {
       return null;

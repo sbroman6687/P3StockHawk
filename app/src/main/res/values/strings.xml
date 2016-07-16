@@ -18,4 +18,13 @@
   <string name="ServerDown">No stock information available. The server is not returning data!!</string>
   <string name="ErrorServer">No stock information available. The server is not returning valid data. Please check for an updated version of the App!</string>
   <string name="StatusUnknown">The problem cannot be identified. Try again later</string>
+  <string name="graph_content_description">Graph showing stock prices over time!</string>
+  <string name="stockName">Stock Name</string>
+  <string name="stockSymbol">Stock Symbol</string>
+  <string name="stockCurrency">Currency</string>
+  <string name="stockDayLow">Day Low</string>
+  <string name="stockDayHigh">Day High</string>
+  <string name="stockYearHigh">Year Maximum</string>
+  <string name="stockYearMin">Year Minimum</string>
+  <string name="EarningShare">Earnings per Share</string>
 </resources>
