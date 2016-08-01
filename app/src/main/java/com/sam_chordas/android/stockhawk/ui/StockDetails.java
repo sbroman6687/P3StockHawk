@@ -31,8 +31,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Soledad on 7/13/2016.
@@ -115,7 +120,6 @@ public class StockDetails extends AppCompatActivity {
             symbol = getIntent().getExtras().getString(QuoteColumns.SYMBOL);
             new StockGraphAsyncTask().execute(symbol,null);
 
-            //falta algo???
 
         }else{
 
@@ -170,12 +174,11 @@ public class StockDetails extends AppCompatActivity {
         }
 
         protected void onPostExecute (LineSet result){
+
+            //Collections.reverse(Arrays.asList(result));
             if (result!=null){
                 setGraph(result);
 
-                //((TextView)tv_stock_name.findViewById(R.id.stock_symbol)).setText(symbol);
-                //((TextView)tv_DayHigh.findViewById(R.id.stock_dayhigh)).setText(high.toString());
-                //((TextView)tv_DayLow.findViewById(R.id.stock_daylow)).setText(low.toString());
 
             }else{
 
@@ -256,6 +259,8 @@ public class StockDetails extends AppCompatActivity {
 
 //source: https://github.com/diogobernardino/WilliamChart/wiki/(2)-Chart
     private void setGraph(LineSet result){
+
+        //Collections.reverse(Arrays.asList(result));
 
         result.setColor(ContextCompat.getColor(this, R.color.material_red_700));
         lineChartView.setContentDescription("Last Year of Stock Comparison");
