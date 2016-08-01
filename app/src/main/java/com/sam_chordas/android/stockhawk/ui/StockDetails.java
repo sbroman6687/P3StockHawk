@@ -136,17 +136,17 @@ public class StockDetails extends AppCompatActivity {
                 urlStringBuilder.append("https://query.yahooapis.com/v1/public/yql?q=");
                 urlStringBuilder.append(URLEncoder.encode("select * from yahoo.finance.historicaldata where symbol = \"", "UTF-8"));
                 urlStringBuilder.append(params[0]);
-                //Add initial date argument, which will just be 6 months before today
+                //Add initial date argument, which will just be 12 months before today
                 urlStringBuilder.append(URLEncoder.encode("\" and startDate = \"", "UTF-8"));
 
                 //Get our start and end dates
                 Calendar c = Calendar.getInstance();
                 Date now = c.getTime();
-                c.add(Calendar.MONTH, -5);
-                Date threeMonthsAgo = c.getTime();
+                c.add(Calendar.MONTH, -11);
+                Date twelveMonthsAgo = c.getTime();
 
                 //Append Date Parameters
-                urlStringBuilder.append(getFormattedDate(threeMonthsAgo));
+                urlStringBuilder.append(getFormattedDate(twelveMonthsAgo));
                 urlStringBuilder.append(URLEncoder.encode("\" and endDate = \"", "UTF-8"));
                 urlStringBuilder.append(getFormattedDate(now));
                 urlStringBuilder.append("\"&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables."
@@ -258,11 +258,11 @@ public class StockDetails extends AppCompatActivity {
     private void setGraph(LineSet result){
 
         result.setColor(ContextCompat.getColor(this, R.color.material_red_700));
-        lineChartView.setContentDescription("Last 6 Months of Stock Comparison");
+        lineChartView.setContentDescription("Last Year of Stock Comparison");
         lineChartView.addData(result);
-        lineChartView.setLabelsColor(Color.BLACK);
-        lineChartView.setAxisColor(Color.BLACK);
-        lineChartView.setXLabels(AxisController.LabelPosition.OUTSIDE);
+        lineChartView.setLabelsColor(Color.WHITE);
+        lineChartView.setAxisColor(Color.WHITE);
+        lineChartView.setXLabels(AxisController.LabelPosition.NONE);
         lineChartView.setStep(10);//Distance between labels
         lineChartView.setAxisBorderValues(Math.round(low), Math.round(high), Math.round(high) / Math.round(low)); // To define axis minimum and maximum values
 
