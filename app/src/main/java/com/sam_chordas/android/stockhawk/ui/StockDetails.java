@@ -215,7 +215,8 @@ public class StockDetails extends AppCompatActivity {
         Float close;// Price of stock when the markets close
         //If we got results, convert them to Strings and Ints, then Points for Graph use
         if(resultCount>0) {
-            for (int i = 0; i <= resultCount-1; i++) {
+            //for (int i = 0; i <= resultCount-1; i++) {
+            for (int i = (resultCount -1); i >= 0; i -- ){
                 try{
                     assert resultsArray != null;
                     point = resultsArray.getJSONObject(i);
