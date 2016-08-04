@@ -1,6 +1,8 @@
 package com.sam_chordas.android.stockhawk.ui;
 
 import android.app.LoaderManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.sam_chordas.stockhawk.CollectionWidget;
 import com.facebook.stetho.Stetho;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
@@ -138,7 +141,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                   if (c.getCount() != 0) {
                     Toast toast =
                         Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
-                            Toast.LENGTH_LONG);
+                            Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                     toast.show();
                     return;
@@ -212,39 +215,39 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
     @StockTaskService.StockStatus int stockStatus = prefs.getInt(mContext.getString(R.string.stockStatus),-1);
-    //stockStatus = StockTaskService.getStockStatusID();
+
 
       switch (stockStatus){
 
         case StockTaskService.STATUS_OK:
           userText = getString(R.string.statusOK);
-          //userText = R.string.ErrorJson;
+
           break;
 
         case StockTaskService.STATUS_ERROR_JSON:
           userText = getString(R.string.ErrorJson);
-          //userText = R.string.ErrorJson;
+
           break;
 
         case StockTaskService.STATUS_SERVER_DOWN:
           userText = getString(R.string.ServerDown);
-          //userText = R.string.ServerDown;
+
           break;
 
         case StockTaskService.STATUS_SERVER_ERROR:
           userText = getString(R.string.ErrorServer);
-          //userText = R.string.ErrorServer;
+
           break;
 
         case StockTaskService.STATUS_UNKNOWN:
           userText = getString(R.string.StatusUnknown);
-          //userText = R.string.StatusUnknown;
+
           break;
         default:
           userText = getString(R.string.statusNoNetwork);
           break;
       }
-    //Toast.makeText(mContext, getString(R.string.network_toast), Toast.LENGTH_SHORT).show();
+
     Toast.makeText(mContext, userText, Toast.LENGTH_SHORT).show();
   }
 
@@ -279,18 +282,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     }
     return false;
 
-    //noinspection SimplifiableIfStatement
-    //if (id == R.id.action_settings) {
-      //return true;
-    //}
-
-    //if (id == R.id.action_change_units){
-      // this is for changing stock changes from percent value to dollar value
-      //Utils.showPercent = !Utils.showPercent;
-      //this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
-    //}
-
-    //return super.onOptionsItemSelected(item);
   }
 
   @Override
@@ -308,14 +299,29 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   public void onLoadFinished(Loader<Cursor> loader, Cursor data){
     mCursorAdapter.swapCursor(data);
     mCursor = data;
-    //Empty View
+
     networkToast();
+
+    //The widget will be updated whenever a new item is added to the database
+    updateStocksWidget();
+  }
+
+  //Since we have a widget backed by a collection (database), we need to implement the code below
+  //to update the widget. Source: http://stackoverflow.com/questions/5355022/app-widget-getting-content-from-database-update-issues
+
+  private void updateStocksWidget(){
+    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext.getApplicationContext());
+    int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, CollectionWidget.class));
+
+    if (appWidgetIds.length > 0){
+      appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.appwidget_lv);
+    }
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader){
     mCursorAdapter.swapCursor(null);
-    //emptyView;
+
   }
 
   @Override

@@ -199,9 +199,5 @@ public class StockTaskService extends GcmTaskService{
     editor.apply();
   }
 
-  //public static int getStockStatusID(){
-
-    //return stockStatus;
-  //}
 
 }

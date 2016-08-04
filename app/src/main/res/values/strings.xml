@@ -31,4 +31,5 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="widget_title">The Market Today</string>
+    <string name="one_year_data">1 Year Stock Chart</string>
 </resources>

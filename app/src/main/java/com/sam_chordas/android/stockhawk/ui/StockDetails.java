@@ -263,7 +263,7 @@ public class StockDetails extends AppCompatActivity {
 
         //Collections.reverse(Arrays.asList(result));
 
-        result.setColor(ContextCompat.getColor(this, R.color.material_red_700));
+        result.setColor(ContextCompat.getColor(this, R.color.accent_pink_clear));
         lineChartView.setContentDescription("Last Year of Stock Comparison");
         lineChartView.addData(result);
         lineChartView.setLabelsColor(Color.WHITE);
@@ -271,7 +271,6 @@ public class StockDetails extends AppCompatActivity {
         lineChartView.setXLabels(AxisController.LabelPosition.NONE);
         lineChartView.setStep(10);//Distance between labels
         lineChartView.setAxisBorderValues(Math.round(low), Math.round(high), Math.round(high) / Math.round(low)); // To define axis minimum and maximum values
-
 
         lineChartView.show();
 

@@ -3,6 +3,7 @@ package com.example.sam_chordas.stockhawk;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Binder;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -24,15 +25,26 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
 
     private void initData(){
         mcollection.clear();
-        cursor = context.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+
+        //Since the RemoteViewsFactory is being called from a remote process, and that context
+        //is being used for permission enforcement I am having an error. To solve that i used
+        //the code below. Source: http://stackoverflow.com/questions/13187284/android-permission-denial-in-widget-remoteviewsfactory-for-content
+
+        final long token = Binder.clearCallingIdentity();
+        try {
+            cursor = context.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
                 new String[]{QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
                         QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
                 QuoteColumns.ISCURRENT + " = ?",
                 new String[]{"1"},
                 null);
 
-        while (cursor.moveToNext()){
-            mcollection.add(new WidgetInformation(cursor.getString(cursor.getColumnIndex(QuoteColumns.SYMBOL)),cursor.getString(cursor.getColumnIndex(QuoteColumns.BIDPRICE)),cursor.getString(cursor.getColumnIndex(QuoteColumns.CHANGE))));
+            while (cursor.moveToNext()){
+                mcollection.add(new WidgetInformation(cursor.getString(cursor.getColumnIndex(QuoteColumns.SYMBOL)),cursor.getString(cursor.getColumnIndex(QuoteColumns.BIDPRICE)),cursor.getString(cursor.getColumnIndex(QuoteColumns.CHANGE))));
+        }
+
+        } finally {
+            Binder.restoreCallingIdentity(token);
         }
 
     }
@@ -40,6 +52,7 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
     public WidgetDataProvider(Context context, Intent intent){
         this.context = context;
         this.intent = intent;
+
     }
 
     @Override

@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -29,11 +30,31 @@
                 chart:paddingEnd="@dimen/activity_horizontal_margin"
                 chart:paddingStart="@dimen/activity_horizontal_margin"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/one_year_data"
+                android:textStyle="bold"
+                android:textSize="@dimen/md_title_textsize"
+                android:layout_gravity="top|center"
+                android:contentDescription="One Year Stock Chart"
+                android:gravity="center_horizontal"
+                android:paddingTop="5sp" />
+
 
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            card_view:contentPadding="15dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp"
+            card_view:theme="@style/Base.CardView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,6 +223,7 @@
 
 
             </LinearLayout>
+        </android.support.v7.widget.CardView>
         </FrameLayout>
 
     </LinearLayout>

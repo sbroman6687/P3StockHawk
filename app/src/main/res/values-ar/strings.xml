@@ -13,4 +13,13 @@
     <string name="network_toast">اه أوه! هذا التطبيق يتطلب اتصال بالإنترنت</string>
     <string name="statusNoNetwork">كنت بحاجة إلى الاتصال بالإنترنت</string>
     <string name="statusOK">يمكنك إضافة أسهم جديدة عن طريق النقر على زر الإضافة</string>
+    <string name="stockCurrency">عملة</string>
+    <string name="stockDayHigh">أقصى يوم</string>
+    <string name="stockDayLow">الحد الأدنى اليوم</string>
+    <string name="stockName">اسم الأسهم</string>
+    <string name="stockSymbol">الأسهم رمز</string>
+    <string name="stockYearHigh">عام الأقصى</string>
+    <string name="stockYearMin">عام الدنيا</string>
+    <string name="widget_title">سوق اليوم</string>
+    <string name="EarningShare">ربحية السهم</string>
 </resources>
