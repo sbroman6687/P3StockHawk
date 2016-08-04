@@ -1,35 +1,35 @@
 <resources>
-    <string name="app_name" translatable="true">P3 Stock Hawk</string>
+    <string name="app_name" translatable="false">P3 Stock Hawk</string>
 
-    <string name="action_example">Example action</string>
+    <string name="action_example" translatable="false">Example action</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="action_change_units">Change Units</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="action_change_units" translatable="true">Change Units</string>
     <string name="symbol_search" translatable="true">Symbol Search</string>
     <string name="content_test" translatable="true">Search for a Stock Symbol</string>
-    <string name="input_hint">FB / GOOG / MSFT</string>
-    <string name="input_prefill"></string>
+    <string name="input_hint" translatable="false">FB / GOOG / MSFT</string>
+    <string name="input_prefill" translatable="false"></string>
     <string name="network_toast" translatable="true">Uh-oh! This app requires an internet connection</string>
-    <string name="stockStatus">StockStatus</string>
+    <string name="stockStatus" translatable="false">StockStatus</string>
     <string name="dataNoAvailable" translatable="true">Stocks data is not available at this moment</string>
     <string name="statusOK" translatable="true">You can add new stocks by clicking the add button</string>
     <string name="statusNoNetwork" translatable="true">You need to connect to internet</string>
-    <string name="ErrorJson">Internal Error ocurred!</string>
-    <string name="ServerDown">No stock information available. The server is not returning data!!</string>
-    <string name="ErrorServer">No stock information available. The server is not returning valid data. Please check for an updated version of the App!</string>
-    <string name="StatusUnknown">The problem cannot be identified. Try again later</string>
-    <string name="graph_content_description">Graph showing stock prices over time!</string>
-    <string name="stockName">Stock Name</string>
-    <string name="stockSymbol">Stock Symbol</string>
-    <string name="stockCurrency">Currency</string>
-    <string name="stockDayLow">Day Low</string>
-    <string name="stockDayHigh">Day High</string>
-    <string name="stockYearHigh">Year Maximum</string>
-    <string name="stockYearMin">Year Minimum</string>
-    <string name="EarningShare">Earnings per Share</string>
-    <string name="lv_stock_widget">Stock Widget</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="widget_title">The Market Today</string>
-    <string name="one_year_data">1 Year Stock Chart</string>
+    <string name="ErrorJson" translatable="true">Internal Error ocurred!</string>
+    <string name="ServerDown" translatable="true">No stock information available. The server is not returning data!!</string>
+    <string name="ErrorServer" translatable="true">No stock information available. The server is not returning valid data. Please check for an updated version of the App!</string>
+    <string name="StatusUnknown" translatable="true">The problem cannot be identified. Try again later</string>
+    <string name="graph_content_description" translatable="true">Graph showing stock prices over time!</string>
+    <string name="stockName" translatable="true">Stock Name</string>
+    <string name="stockSymbol" translatable="true">Stock Symbol</string>
+    <string name="stockCurrency" translatable="true">Currency</string>
+    <string name="stockDayLow" translatable="true">Day Low</string>
+    <string name="stockDayHigh" translatable="true">Day High</string>
+    <string name="stockYearHigh" translatable="true">Year Maximum</string>
+    <string name="stockYearMin" translatable="true">Year Minimum</string>
+    <string name="EarningShare" translatable="true">Earnings per Share</string>
+    <string name="lv_stock_widget" translatable="true">Stock Widget</string>
+    <string name="appwidget_text" translatable="true">EXAMPLE</string>
+    <string name="add_widget" translatable="true">Add widget</string>
+    <string name="widget_title" translatable="true">The Market Today</string>
+    <string name="one_year_data" translatable="true">1 Year Stock Chart</string>
 </resources>
