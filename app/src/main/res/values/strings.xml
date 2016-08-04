@@ -32,4 +32,7 @@
     <string name="add_widget" translatable="true">Add widget</string>
     <string name="widget_title" translatable="true">The Market Today</string>
     <string name="one_year_data" translatable="true">1 Year Stock Chart</string>
+    <string name="value_saved" translatable="true">This stock is already saved!</string>
+    <string name="description_chart" translatable="true">Last Year of Stock Comparison</string>
+    <string name="nothing_to_show" translatable="true">Nothing to show</string>
 </resources>

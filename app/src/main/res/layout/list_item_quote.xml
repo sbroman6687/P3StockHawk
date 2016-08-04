@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="@dimen/height_linearLayout"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     >
   <TextView
       android:id="@+id/stock_symbol"
       style="@style/StockSymbolTextStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:gravity="left|center_vertical"
+      android:gravity="start|center_vertical"
       tools:text="GOOG"
       android:textColor="#fefefe"
       android:textStyle="bold" />
@@ -21,15 +21,15 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:gravity="right"
+      android:gravity="end"
       >
     <TextView
         android:id="@+id/bid_price"
         style="@style/BidPriceTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="10sp"
-        android:paddingStart="10sp"
+        android:paddingEnd="@dimen/padding_bid"
+        android:paddingStart="@dimen/padding_bid"
         tools:text="1000.00"
         android:textColor="#ffffff" />
     <TextView
@@ -38,8 +38,8 @@
         style="@style/PercentChangeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="3dp"
-        android:paddingStart="3dp"
+        android:paddingEnd="@dimen/padding_change"
+        android:paddingStart="@dimen/padding_change"
         tools:text="100%"
         />
   </LinearLayout>

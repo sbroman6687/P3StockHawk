@@ -18,21 +18,7 @@ import com.sam_chordas.android.stockhawk.R;
  */
 public class CollectionWidget extends AppWidgetProvider {
 
-//    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-//                                int appWidgetId) {
 
-//        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.collection_widget);
-        //  views.setTextViewText(R.id.appwidget_text, widgetText);
-
-        // Set up the collection
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//            setRemoteAdapter(context, views);
-//        } else {
-//            setRemoteAdapterV11(context, views);
-//        }
-        // Instruct the widget manager to update the widget
-//        appWidgetManager.updateAppWidget(appWidgetId, views);
-//    }
     @Override
     public void onReceive(Context context, Intent intent){
         super.onReceive(context, intent);
@@ -74,26 +60,6 @@ public class CollectionWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    /**
-     * Sets the remote adapter used to fill in the list items
-     *
-     * @param views RemoteViews to set the RemoteAdapter
-     */
-   // @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    //private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
-        //views.setRemoteAdapter(R.id.appwidget_lv,
-                //new Intent(context, WidgetService.class));
-    //}
 
-    /**
-     * Sets the remote adapter used to fill in the list items
-     *
-     * @param views RemoteViews to set the RemoteAdapter
-     */
-    //@SuppressWarnings("deprecation")
-   // private static void setRemoteAdapterV11(Context context, @NonNull final RemoteViews views) {
-        //views.setRemoteAdapter(0, R.id.appwidget_lv,
-               // new Intent(context, WidgetService.class));
-    //}
 }
 

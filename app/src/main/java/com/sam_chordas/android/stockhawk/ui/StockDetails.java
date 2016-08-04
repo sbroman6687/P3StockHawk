@@ -123,7 +123,8 @@ public class StockDetails extends AppCompatActivity {
 
         }else{
 
-            Toast.makeText(mContext,"Nothing to show",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext,"Nothing to show",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,R.string.nothing_to_show,Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -264,7 +265,8 @@ public class StockDetails extends AppCompatActivity {
         //Collections.reverse(Arrays.asList(result));
 
         result.setColor(ContextCompat.getColor(this, R.color.accent_pink_clear));
-        lineChartView.setContentDescription("Last Year of Stock Comparison");
+        //lineChartView.setContentDescription("Last Year of Stock Comparison");
+        lineChartView.setContentDescription(getString(R.string.description_chart));
         lineChartView.addData(result);
         lineChartView.setLabelsColor(Color.WHITE);
         lineChartView.setAxisColor(Color.WHITE);

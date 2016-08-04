@@ -20,4 +20,6 @@
     <string name="widget_title">سوق اليوم</string>
     <string name="EarningShare">ربحية السهم</string>
     <string name="one_year_data">1 السنة الرسم البياني للاسهم</string>
+    <string name="value_saved">يتم حفظ هذه الأسهم بالفعل!</string>
+    <string name="nothing_to_show">لا شيء لاظهار</string>
 </resources>
